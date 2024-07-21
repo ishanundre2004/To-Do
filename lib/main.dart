@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:todo/pages/todo_page.dart';
+import 'package:todo/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: TodoPage(),
+      home: HomePage(),
       // routes: {
       //   "/firstpage": (context) => const FirstPage(),
       //   "/secondpage": (context) => const SecondPage(),
