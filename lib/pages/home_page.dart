@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:todo/utils/dialog_box.dart';
 
 import '../utils/todo_tile.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,9 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController mycontroller = TextEditingController();
 
-  void getUser() {
-    print(mycontroller.text);
-  }
+  final _controller = TextEditingController();
 
   List toDoList = [
     ["Bring Grocerry", false],
@@ -27,6 +26,32 @@ class _HomePageState extends State<HomePage> {
   void checkBoxChecked(bool? value, int index) {
     setState(() {
       toDoList[index][1] = !toDoList[index][1];
+    });
+  }
+
+  void addNewTask() {
+    setState(() {
+      toDoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DialogBox(
+            controller: _controller,
+            onAdd: addNewTask,
+            onCancel: () => Navigator.of(context).pop(),
+          );
+        });
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.remove(index);
     });
   }
 
@@ -46,13 +71,21 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.purple[300],
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask,
+          backgroundColor: Colors.purple[300],
+          child: const Icon(Icons.add),
+        ),
         body: ListView.builder(
           itemCount: toDoList.length,
           itemBuilder: (context, index) {
             return ToDoTile(
-                onChanged: (value) => checkBoxChecked(value, index),
-                taskCompleted: toDoList[index][1],
-                taskName: toDoList[index][0]);
+              onChanged: (value) => checkBoxChecked(value, index),
+              taskCompleted: toDoList[index][1],
+              // ignore: avoid_types_as_parameter_names
+              taskName: toDoList[index][0],
+              deleteFunction: (context) => deleteTask,
+            );
           },
         ));
   }
