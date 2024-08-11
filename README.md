@@ -1,4 +1,4 @@
-# ToDo
+# ToDo Application
 
 This is my first flutter application. This "ToDo" app have features like :
 1. Adding a new task using dialog box.
