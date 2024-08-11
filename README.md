@@ -20,8 +20,7 @@ This is my first flutter application. This "ToDo" app have features like :
 2. It allows user to add a line through your completed tasks.
 3. If an user wants to delete the completed task, sliding the particular task from right will show the delete option
 4. In this I have used Hive Database to store and perform operations on the tasks.
-   ![image](https://github.com/user-attachments/assets/500f4722-3dee-405e-b20d-96c2cf584364)
-   ![image](https://github.com/user-attachments/assets/b5dc1ca1-079f-4f01-a110-fb8ef7835a3d)
-   ![image](https://github.com/user-attachments/assets/0d14988e-a7c1-42e1-8585-5703102355da)
+
+![ToDo](https://github.com/user-attachments/assets/bc0af298-c89a-4703-b730-4ecd5f2a417d)
 
    
